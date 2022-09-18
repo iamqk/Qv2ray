@@ -28,7 +28,7 @@ jobs:
 #         platform: [ubuntu-20.04, windows-latest, macos-latest]
         platform: [macos-latest]
         build_type: [Release]
-        qt_version: [6.3.0]
+        qt_version: [6.2.2]
 #        include:
 #           - platform: windows-latest
 #            qtarch: win64_msvc2019_64
