@@ -31,7 +31,7 @@ jobs:
         qt_version: [6.3.0]
         include:
 #           - platform: windows-latest
-            qtarch: win64_msvc2019_64
+#            qtarch: win64_msvc2019_64
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
