@@ -54,7 +54,7 @@ jobs:
           }
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v3
       with:
         submodules: 'recursive'
 
