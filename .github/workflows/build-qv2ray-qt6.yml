@@ -30,7 +30,7 @@ jobs:
         build_type: [RelWithDebInfo, Release]
         qt_version: [6.3.0]
         include:
-          - platform: windows-latest
+#           - platform: windows-latest
             qtarch: win64_msvc2019_64
       fail-fast: false
 
