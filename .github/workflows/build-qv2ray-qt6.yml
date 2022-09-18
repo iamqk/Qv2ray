@@ -25,10 +25,11 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT6') }}
     strategy:
       matrix:
+        ui_type: [QWidget, QML]
 #         platform: [ubuntu-20.04, windows-latest, macos-latest]
         platform: [macos-latest]
         build_type: [Release]
-        qt_version: [6.2.2]
+        qt_version: [6.0.0]
 #        include:
 #           - platform: windows-latest
 #            qtarch: win64_msvc2019_64
@@ -86,6 +87,12 @@ jobs:
         if: matrix.platform == 'macos-latest'
         run: |
           brew install protobuf grpc ninja pkg-config openssl
+          git clone https://github.com/Qv2ray/macdeployqt-patched
+          cd macdeployqt-patched
+          mkdir build; cd build;
+          cmake .. -DCMAKE_BUILD_TYPE=Release; cmake --build .
+          cp -v ./macdeployqt ${Qt6_DIR}/bin/macdeployqt
+
       # --------------------------------------------------------
       - name: Win - Setup Ninja
         if: matrix.platform == 'windows-latest'
