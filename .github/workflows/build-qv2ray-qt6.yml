@@ -29,7 +29,7 @@ jobs:
         platform: [macos-latest]
         build_type: [RelWithDebInfo, Release]
         qt_version: [6.3.0]
-        include:
+#        include:
 #           - platform: windows-latest
 #            qtarch: win64_msvc2019_64
       fail-fast: false
