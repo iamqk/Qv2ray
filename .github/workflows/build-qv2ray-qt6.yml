@@ -27,7 +27,7 @@ jobs:
       matrix:
 #         platform: [ubuntu-20.04, windows-latest, macos-latest]
         platform: [macos-latest]
-        build_type: [RelWithDebInfo, Release]
+        build_type: [Release]
         qt_version: [6.3.0]
 #        include:
 #           - platform: windows-latest
