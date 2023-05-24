@@ -26,11 +26,11 @@ jobs:
     strategy:
       matrix:
 #         platform: [ubuntu-16.04, macos-latest, windows-latest]
-        ui_type: [QWidget, QML]
+#        ui_type: [QWidget, QML]
         platform: [ubuntu-16.04, macos-latest, windows-latest]
         arch: [x64]
         build_type: [Release]
-        qt_version: [6.5.0]
+        qt_version: [5.15.0]
         include:
            - platform: windows-latest
              arch: x64
