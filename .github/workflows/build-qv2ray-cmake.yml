@@ -27,7 +27,7 @@ jobs:
       matrix:
 #         platform: [ubuntu-16.04, macos-latest, windows-latest]
 #        ui_type: [QWidget, QML]
-        platform: [ubuntu-16.04, macos-latest, windows-latest]
+        platform: [macos-latest]
         arch: [x64]
         build_type: [Release]
         qt_version: [5.15.0]
@@ -117,14 +117,7 @@ jobs:
         if: matrix.platform == 'macos-latest'
         with:
           node-version: "12.x"
-      - uses: actions/setup-node@v1
-        if: matrix.platform == 'macos-latest'
-      - run: npm explore npm/node_modules/npm-lifecycle -g -- npm install node-gyp@latest
       - run: npm install -g appdmg
-      #- run: |
-      #    npm config set msvs_version 2017
-      #    npm -v
-      #   npm install node-gyp@latest
       
         if: matrix.platform == 'macos-latest'
       - name: macOS - ${{ matrix.qt_version }} - Generate Dependencies and Build
@@ -144,6 +137,7 @@ jobs:
             -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
           sudo cmake --install .
+          
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
       # --------------------------------------------------------
       - name: Windows - ${{ matrix.qt_version }} - Generate Dependencies and Build
