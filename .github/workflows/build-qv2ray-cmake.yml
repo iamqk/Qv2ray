@@ -26,7 +26,7 @@ jobs:
     strategy:
       matrix:
         platform: [macos-12, windows-latest]
-        ui_type: [QWidget, QML]
+        ui_type: [QWidget]
     #    platform: [macos-12]
         arch: [x64]
         build_type: [Release]
