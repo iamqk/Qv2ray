@@ -117,14 +117,15 @@ jobs:
         if: matrix.platform == 'macos-latest'
         with:
           node-version: "12.x"
-
+      - uses: actions/setup-node@v1
+        if: matrix.platform == 'macos-latest'
+      - run: npm explore npm/node_modules/npm-lifecycle -g -- npm install node-gyp@latest
+      - run: npm install -g appdmg
       #- run: |
       #    npm config set msvs_version 2017
       #    npm -v
       #   npm install node-gyp@latest
-
-      - run: npm explore npm/node_modules/npm-lifecycle -g -- npm install node-gyp@latest
-      - run: npm install -g appdmg
+      
         if: matrix.platform == 'macos-latest'
       - name: macOS - ${{ matrix.qt_version }} - Generate Dependencies and Build
         shell: bash
