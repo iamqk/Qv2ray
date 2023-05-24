@@ -31,10 +31,10 @@ jobs:
         arch: [x64]
         build_type: [Release]
         qt_version: [5.15.0]
-        include:
-           - platform: windows-latest
-             arch: x64
-             qtarch: win64_msvc2019_64
+#        include:
+#           - platform: windows-latest
+#            arch: x64
+#             qtarch: win64_msvc2019_64
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
