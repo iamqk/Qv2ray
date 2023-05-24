@@ -25,7 +25,7 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
-        platform: [macos-12, windows-latest, ubuntu-20.04]
+        platform: [macos-12, windows-latest]
     #    ui_type: [QWidget, QML]
     #    platform: [macos-12]
         arch: [x64]
@@ -116,7 +116,7 @@ jobs:
       - uses: actions/setup-node@v1
         if: matrix.platform == 'macos-12'
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - run: npm install -g appdmg
       
         if: matrix.platform == 'macos-12'
