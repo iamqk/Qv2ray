@@ -25,9 +25,9 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
-        platform: [macos-12, windows-latest]
+    #    platform: [macos-12, windows-latest]
         ui_type: [QWidget]
-    #    platform: [macos-12]
+        platform: [ubuntu-20.04]
         arch: [x64]
         build_type: [Release]
         qt_version: [5.15.0]
@@ -81,8 +81,8 @@ jobs:
       - name: Linux - ${{ matrix.qt_version }} - Build preparation - Install Packages
         if: matrix.platform == 'ubuntu-20.04'
         run: |
-          sudo add-apt-repository ppa:webispy/grpc
-          sudo add-apt-repository ppa:ondrej/nginx
+          #sudo add-apt-repository ppa:webispy/grpc
+          #sudo add-apt-repository ppa:ondrej/nginx
           sudo apt update
           sudo apt install -y libgl-dev libx11-dev libxkbcommon-x11-dev libxcb-image0-dev libxcb-icccm4-dev libxcb-keysyms1 libxcb-render-util0 libxcb-xinerama0 \
               libprotobuf-dev protobuf-compiler protobuf-c-compiler libgrpc++-dev protobuf-compiler-grpc \
