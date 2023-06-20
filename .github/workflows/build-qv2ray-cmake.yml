@@ -94,8 +94,9 @@ jobs:
             brew install protobuf@21
             brew link protobuf@21
             
-            brew install grpc@1.54
-            brew link grpc@1.54
+            brew install grpc
+            #brew install grpc@1.54
+            #brew link grpc@1.54
 
             brew install ninja pkg-config openssl
       # --------------------------------------------------------
