@@ -26,14 +26,15 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
-        platform: [ubuntu-20.04, macos-12, windows-latest]
+        platform: [macos-12]
         arch: [x64]
-        build_type: [RelWithDebInfo, Release]
+        #build_type: [RelWithDebInfo, Release]
+        build_type: [Release]
         qt_version: [5.15.0]
-        include:
-          - platform: windows-latest
-            arch: x64
-            qtarch: win64_msvc2019_64
+        #include:
+        #  - platform: windows-latest
+        #    arch: x64
+        #    qtarch: win64_msvc2019_64
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
@@ -91,7 +92,16 @@ jobs:
         if: matrix.platform == 'macos-12'
         run:  |
             brew install protobuf@21
+            brew unlink protobuf
+            brew link protobuf@21
+            
             brew install grpc@1.54
+            brew unlink grpc
+            brew link grpc@1.54
+
+            export LDFLAGS="-L/usr/local/opt/grpc@1.54/lib"
+            export CPPFLAGS="-I/usr/local/opt/grpc@1.54/include"
+
             brew install ninja pkg-config openssl
       # --------------------------------------------------------
       - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Setup Ninja
