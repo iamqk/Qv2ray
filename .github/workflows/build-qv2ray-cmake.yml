@@ -97,9 +97,6 @@ jobs:
             brew install grpc@1.54
             brew link grpc@1.54
 
-            export LDFLAGS="-L/usr/local/opt/grpc@1.54/lib"
-            export CPPFLAGS="-I/usr/local/opt/grpc@1.54/include"
-
             brew install ninja pkg-config openssl
       # --------------------------------------------------------
       - name: Win-${{ matrix.arch }} - ${{ matrix.qt_version }} - Setup Ninja
