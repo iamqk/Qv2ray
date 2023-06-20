@@ -26,8 +26,8 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
-        #platform: [ubuntu-20.04, macos-12.6.5, windows-latest]       
-        platform: [macos-12.6.5]        
+        #platform: [ubuntu-20.04, macos-13, windows-latest]       
+        platform: [macos-13]        
         arch: [x64]
         #build_type: [RelWithDebInfo, Release]
         build_type: [Release]
@@ -90,7 +90,7 @@ jobs:
               libcurl4-openssl-dev libssl-dev fuse
       # --------------------------------------------------------
       - name: macOS - ${{ matrix.qt_version }} - Build preparation - Install Packages
-        if: matrix.platform == 'macos-12.6.5'
+        if: matrix.platform == 'macos-13'
         run:  |
             brew install protobuf@21
             brew link protobuf@21
@@ -114,14 +114,14 @@ jobs:
           ./setup-libs.sh windows ${{ matrix.arch }}
       # ========================================================================================================= Generate MakeFile and Build
       - uses: actions/setup-node@v3
-        if: matrix.platform == 'macos-12.6.5'
+        if: matrix.platform == 'macos-13'
         with:
           node-version: "18.x"
       - run: npm install -g appdmg
-        if: matrix.platform == 'macos-12.6.5'
+        if: matrix.platform == 'macos-13'
       - name: macOS - ${{ matrix.qt_version }} - Generate Dependencies and Build
         shell: bash
-        if: matrix.platform == 'macos-12.6.5'
+        if: matrix.platform == 'macos-13'
         env:
           PKG_CONFIG_PATH: /usr/local/opt/openssl@1.1/lib/pkgconfig
         run: |
@@ -203,14 +203,14 @@ jobs:
           overwrite: true
       # --------------------------------------------------------
       - name: macOS - ${{ matrix.qt_version }} - Uploading Artifact
-        if: matrix.platform == 'macos-12.6.5'
+        if: matrix.platform == 'macos-13'
         uses: actions/upload-artifact@master
         with:
           name: Qv2ray-${{ github.sha }}.macOS-${{ matrix.arch }}.qt${{ matrix.qt_version }}-${{ matrix.build_type }}.dmg
           path: Qv2ray.dmg
       - name: macOS - ${{ matrix.qt_version }} - Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
-        if: github.event_name == 'release' && matrix.platform == 'macos-12.6.5' && matrix.qt_version == '5.15.0' && matrix.build_type == 'Release'
+        if: github.event_name == 'release' && matrix.platform == 'macos-13' && matrix.qt_version == '5.15.0' && matrix.build_type == 'Release'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: Qv2ray.dmg
