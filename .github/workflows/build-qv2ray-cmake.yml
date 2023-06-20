@@ -26,7 +26,8 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
-        platform: [ubuntu-20.04, macos-latest, windows-latest]        arch: [x64]
+        platform: [ubuntu-20.04, macos-latest, windows-latest]        
+        arch: [x64]
         build_type: [RelWithDebInfo, Release]
         qt_version: [5.15.0]
         include:
