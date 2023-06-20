@@ -92,11 +92,9 @@ jobs:
         if: matrix.platform == 'macos-12'
         run:  |
             brew install protobuf@21
-            brew unlink protobuf
             brew link protobuf@21
             
             brew install grpc@1.54
-            brew unlink grpc
             brew link grpc@1.54
 
             export LDFLAGS="-L/usr/local/opt/grpc@1.54/lib"
